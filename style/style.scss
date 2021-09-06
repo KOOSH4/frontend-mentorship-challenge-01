@@ -10,7 +10,9 @@ $purpleColor: #358cd3;
 $dakBlue: #192a56;
 $textColor: #272727;
 $linkColor: #743afa;
-
+$blueGradient: #56c9ffa4;
+$pinkHeader: #B74F6F;
+$btnColor: black;
 * {
     margin: 0;
     padding: 0;
@@ -56,6 +58,7 @@ header {
     margin: 0 auto;
     h1 {
         color: $dakBlue;
+        margin: 1rem ;
         font-size: 2.5rem;
         font-weight: bold;
         text-shadow: 0.025em 0.025em 0 rgb(0, 102, 255), 0.05em 0.05em 0 rgb(0, 140, 255),
@@ -63,29 +66,6 @@ header {
     }
 }
 
-.header-button {
-    margin: 1rem;
-    min-width: 130px;
-    height: 40px;
-    color: #fff;
-    padding: 5px 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    outline: none;
-    border-radius: 5px;
-    border: none;
-    background-size: 120% auto;
-    background-image: linear-gradient(315deg, #43cea2 0%, #185a9d 75%);
-}
-.header-button:hover {
-    background-position: right center;
-}
-.header-button:active {
-    top: 2px;
-}
 
 .header-group {
     background-image: url(../images/hero.jpg);
@@ -132,7 +112,6 @@ header {
     grid-column: 3/4;
     grid-row: 1;
 }
-
 a {
     text-decoration: none;
     color: $textColor;
@@ -147,7 +126,6 @@ a {
         }
     }
 }
-
 a {
     h2,
     i {
@@ -158,18 +136,14 @@ img {
     max-width: 100%;
     height: auto;
 }
-
 .portfolio {
     width: 60%;
     @include Flexes(column, space-around, center);
 }
-
 $anim-speed: 0.3s;
-
 .tiles {
     font-size: 0;
     text-align: center;
-
     .tile {
         display: inline-block;
         margin: 10px;
@@ -179,37 +153,34 @@ $anim-speed: 0.3s;
         position: relative;
         border-radius: 3px;
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
-
         &:before {
             content: "";
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(131, 131, 131, 0.7) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, $blueGradient 100%);
             width: 100%;
             height: 50%;
             opacity: 0;
             position: absolute;
+            border-radius: 15px;
             top: 100%;
             left: 0;
             z-index: 2;
             transition-property: top, opacity;
             transition-duration: $anim-speed;
         }
-
         img {
             display: block;
             max-width: 100%;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
         }
-
         .details {
             font-size: 16px;
             padding: 20px;
-            color: #fff;
+            color: #ffe9d7;  
             position: absolute;
             bottom: 0;
             left: 0;
             z-index: 3;
-
             span {
                 display: block;
                 opacity: 0;
@@ -219,13 +190,11 @@ $anim-speed: 0.3s;
                 transition-duration: $anim-speed;
                 transition-delay: 0s;
             }
-
             .title {
                 line-height: 1;
                 font-weight: 600;
                 font-size: 18px;
             }
-
             .info {
                 line-height: 1.2;
                 margin-top: 5px;
@@ -239,19 +208,15 @@ $anim-speed: 0.3s;
             span {
                 opacity: 1;
             }
-
             &:before {
                 top: 50%;
             }
-
             span {
                 top: 0;
             }
-
             .title {
                 transition-delay: 0.15s;
             }
-
             .info {
                 transition-delay: 0.25s;
             }
@@ -275,29 +240,45 @@ $anim-speed: 0.3s;
         border-radius: 0.5rem;
         width: inherit;
         height: 30vh;
-
-        background-image: linear-gradient(to bottom, transparent, rgba(131, 131, 131, 0.74)), url(./../images/6.jpg);
+        background-image: linear-gradient(to bottom, transparent, $blueGradient), url(./../images/6.jpg);
     }
     section {
+        h1{
+            margin:0 1rem 1rem 1rem;
+            font-size:1.4rem;
+        }
+        p{
+            font-weight: bold;
+        }
         p,
-        h2 {
-            font-size: 1rem;
-            color: white;
+        h1 {
+            color: $btnColor;
             margin: 0 1rem;
             padding: 0;
         }
-        h2 {
-            margin: 0 1rem 1rem 1rem;
-            font-size: 1rem;
-            color: white;
-            border: 2px solid rgba(201, 201, 201, 0.637);
-            border-radius: 2rem;
-            background-color: transparent;
-            padding: 0.3rem;
-            margin: 0.3rem;
-        }
+
     }
 }
+.portfolio-btn {
+    margin:0 1rem 1rem 1rem ;
+    min-width: 130px;
+    height: 40px;
+    color: $btnColor;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 20px;
+    border: 2px solid $btnColor;
+    background: #ffffff00;
+  }
+  .portfolio-btn:hover {
+    background: rgba(80, 150, 255, 0.952);
+    color: $btnColor;
+  }
 // === suggestion group ====
 .suggestion-group {
     width: 70%;
@@ -315,16 +296,26 @@ $anim-speed: 0.3s;
     width: 100%;
     @include Flexes(row, center, center);
     section {
-        margin: 2rem 2rem;
+        margin: 0.75rem;
+        height: 30%;
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding:0 0.2rem 0 0;
+        transition: transform .2s ease-in-out;
+        p{
+            padding:  0 1rem 0.5rem 0.5rem;
+        }
+
+        &:hover{
+            transform: scale(1.03);
+        }
     }
 }
 
 .suggestion-tile-head {
     font-weight: bold;
 }
-.suggestion-tile-des {
-    margin: 0.25rem 0;
-}
+
 //  ======= footer section =====
 footer {
     min-width: 70%;
